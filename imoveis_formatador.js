@@ -1,6 +1,8 @@
 const fs = require("fs");
 const csvParser = require("csv-parser");
-//const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+
+
 
 
 const stream = fs.createReadStream("houses.csv");
@@ -29,8 +31,25 @@ stream.pipe(csvParser()).on("data", (data) => { //pipe: cada linha sendo entendi
 });
 
 stream.on('end', () => { //o 'end' não tem argumento
-    console.log("Conteúdo", conteudo)
-})
+    const csvWriter = createCsvWriter({
+        path: 'imoveis.csv',
+        header: [
+            { id: 'id', title: 'id' },
+            { id: 'city', title: 'city' },
+            { id: 'area', title: 'area' },
+            { id: 'rooms', title: 'rooms' },
+            { id: 'bathroom', title: 'bathroom' },
+            { id: 'parking spaces', title: 'parking_spaces' },
+            { id: 'floor', title: 'floor' },
+            { id: 'animal', title: 'animal' },
+            { id: 'furniture', title: 'furniture' },
+            { id: 'hoa', title: 'hoa' },
+            { id: 'rent amount', title: 'rent_amount' },
+            { id: 'property tax', title: 'property_tax' },
+            { id: 'fire insurance', title: 'fire_insurance' },
+            { id: 'total', title: 'total' },
+        ]
+    });
 
-
-//node imoveis_formatador.js
+    csvWriter.writeRecords(conteudo);
+});
