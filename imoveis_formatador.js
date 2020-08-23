@@ -9,6 +9,7 @@ const stream = fs.createReadStream("houses.csv");
 let conteudo = [];
 stream.pipe(csvParser()).on("data", (data) => { //pipe: cada linha sendo entendida como objeto
     conteudo.push({
+        id: conteudo.length + 1,
         city: data['city'].trim(),
         area: Number(data['area']),
         rooms: Number(data['rooms']),
