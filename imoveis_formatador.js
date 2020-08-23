@@ -20,11 +20,11 @@ stream.pipe(csvParser()).on("data", (data) => { //pipe: cada linha sendo entendi
         floor: Number(data['floor']),
         animal: Boolean(data['animal']),
         furniture: Boolean(data['furniture']),
-        hoa: Number(data['hoa']),
-        'rent amount': Number(data['rent amount']),
-        'property tax': Number(data['property tax']),
-        'fire insurance': Number(data['fire insurance']),
-        total: Number(data['total'])
+        hoa: Number(data['hoa'] * 100),
+        'rent amount': Number(data['rent amount'] * 100),
+        'property tax': Number(data['property tax'] * 100),
+        'fire insurance': Number(data['fire insurance'] * 100),
+        total: Number(data['total'] * 100)
     });
     //city,area,rooms,bathroom,parking spaces,floor,animal,furniture,hoa,
     //rent amount,property tax,fire insurance,total
